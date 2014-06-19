@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-input clean="true" temporary="true">
+<server>
+    <repository location="<%=node['ihs']['image_dir']%>"/>
+</server>
+
+<install modify='false'>
+<offering id='com.ibm.websphere.IHS.v85' profile='IBM HTTP Server for WebSphere Application Server V8.5' features="<%=node['ihs']['features']%>" installFixes='none'/>
+</install>
+
+<profile id='IBM HTTP Server for WebSphere Application Server V8.5' installLocation="<%=node['ihs']['install_dir']%>">
+<data key='eclipseLocation' value="<%=node['ihs']['install_dir']%>"/>
+<data key='user.import.profile' value='false'/>
+<data key='user.ihs.httpPort' value="<%=node['ihs']['port']%>"/>
+<data key='user.ihs.http.server.service.name' value='IBM HTTP Server for WebSphere Application Server V8.5'/>
+<data key='user.ihs.installHttpService' value='true'/>
+<data key='user.ihs.http.server.service.name.key' value='IBMHTTPServerforWebSphereApplicationServerV8.5'/>
+<data key='cic.selector.nl' value="<%=node['ihs']['lang']%>"/>
+</profile>
+
+</agent-input>

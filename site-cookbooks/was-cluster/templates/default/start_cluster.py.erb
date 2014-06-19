@@ -1,0 +1,8 @@
+print "start"
+
+cellname = AdminControl.getCell()
+clusterName = "<%=node['was_cluster']['cluster_name']%>"
+cluster = AdminControl.completeObjectName("cell="+cellname+",type=Cluster,name="+clusterName+",*")
+AdminControl.invoke(cluster, "start")
+
+print "end"

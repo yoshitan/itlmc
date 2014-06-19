@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-input clean="true" temporary="true">
+<server>
+    <repository location="<%=node['plg']['image_dir']%>"/>
+</server>
+
+<install modify='false'>
+<offering id='com.ibm.websphere.PLG.v85' profile='Web Server Plug-ins for IBM WebSphere Application Server V8.5' features="<%=node['plg']['features']%>" installFixes='none'/>
+</install>
+
+<profile id='Web Server Plug-ins for IBM WebSphere Application Server V8.5' installLocation="<%=node['plg']['install_dir']%>">
+<data key='eclipseLocation' value="<%=node['plg']['install_dir']%>"/>
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.nl' value="<%=node['plg']['lang']%>"/>
+</profile>
+
+</agent-input>

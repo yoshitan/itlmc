@@ -1,0 +1,12 @@
+{
+  "run_list":[
+    "recipe[was-prereq]",
+    "recipe[im]",
+    "recipe[was]",
+    "recipe[ihs]",
+    "recipe[plg]",
+    "recipe[wct]",
+    "recipe[was-cluster]",
+    "recipe[testapp]"
+  ]
+}

@@ -1,0 +1,7 @@
+default[:was][:image_dir] = "/tmp/was"
+default[:was][:image_file1] = "WAS_ND_V8.5.5_1_OF_3.zip"
+default[:was][:image_file2] = "WAS_ND_V8.5.5_2_OF_3.zip"
+default[:was][:image_file3] = "WAS_ND_V8.5.5_3_OF_3.zip"
+default[:was][:install_dir] = "/opt/IBM/WebSphere/AppServer"
+default[:was][:lang] = "ja"
+default[:was][:features] = "core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit"

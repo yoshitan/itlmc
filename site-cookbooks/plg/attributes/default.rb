@@ -1,0 +1,7 @@
+default[:plg][:image_dir] = "/tmp/was_suppl"
+default[:plg][:image_file1] = "WAS_V8.5.5_SUPPL_1_OF_3.zip"
+default[:plg][:image_file2] = "WAS_V8.5.5_SUPPL_2_OF_3.zip"
+default[:plg][:image_file3] = "WAS_V8.5.5_SUPPL_3_OF_3.zip"
+default[:plg][:install_dir] = "/opt/IBM/WebSphere/Plugins"
+default[:plg][:lang] = "ja"
+default[:plg][:features] = "core.feature,com.ibm.jre.6_64bit"

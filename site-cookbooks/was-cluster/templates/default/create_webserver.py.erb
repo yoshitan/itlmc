@@ -1,0 +1,9 @@
+print "start"
+
+serverName = "<%=node['was_cluster']['webserver_name']%>"
+paramList = ['-name', serverName]
+nodeName = "<%=node['was_cluster']['node_name'][0]%>"
+AdminTask.createWebServer(nodeName, paramList)
+AdminConfig.save()
+
+print "end"

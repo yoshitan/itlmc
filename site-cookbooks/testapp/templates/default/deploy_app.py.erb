@@ -1,0 +1,24 @@
+print "start"
+
+earFile = "<%=node['was']['install_dir']%>/installableApps/<%=node['testapp']['earfile_name']%>"
+appName = "<%=node['testapp']['app_name']%>"
+clusterName = "<%=node['was_cluster']['cluster_name']%>"
+
+app = AdminConfig.getid("/Deployment:"+appName+"/" )
+if(len(app) > 0):
+  print "application already exists. updating..."
+  optionString = "[-operation update -contents "+earFile+" ]"
+  AdminApp.update( appName, 'app', optionString )
+else:
+  print "application does not exixt. installing..."
+  AdminApp.install( earFile, ["-appname", appName, "-cluster", clusterName] )
+AdminConfig.save()
+
+cellName = AdminControl.getCell()
+mapServers = "WebSphere:cell="+cellName+",cluster="+clusterName+"+WebSphere:cell="+cellName+",node=<%=node['was_cluster']['node_name'][0]%>,server=<%=node['was_cluster']['webserver_name']%>"
+
+AdminApp.edit(appName, ['-MapModulesToServers', [['.*', '.*', mapServers]]])
+AdminConfig.save()
+AdminNodeManagement.syncActiveNodes()
+
+print "end"

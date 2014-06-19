@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-input clean="true" temporary="true">
+<server>
+    <repository location="<%=node['was']['image_dir']%>"/>
+</server>
+
+<install modify='false'>
+<offering id='com.ibm.websphere.ND.v85' profile='IBM WebSphere Application Server V8.5' features="<%=node['was']['features']%>" installFixes='none'/>
+</install>
+
+<profile id='IBM WebSphere Application Server V8.5' installLocation="<%=node['was']['install_dir']%>">
+<data key='eclipseLocation' value="<%=node['was']['install_dir']%>"/>
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.nl' value="<%=node['was']['lang']%>"/>
+</profile>
+
+</agent-input>

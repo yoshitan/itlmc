@@ -1,0 +1,20 @@
+print "start"
+
+clusterName = "<%=node['was_cluster']['cluster_name']%>"
+
+attrs = [['name', clusterName]]
+cellname = AdminControl.getCell()
+cell = AdminConfig.getid("/Cell:"+cellname+"/")
+cluster = AdminConfig.create("ServerCluster", cell, attrs)
+
+<% node[:was_cluster][:managed_name].each_with_index do |managed,i| -%>
+nodeString = "/Node:<%=node['was_cluster']['node_name'][i]%>"
+node = AdminConfig.getid(nodeString)
+AdminConfig.createClusterMember(cluster, node, [['memberName', "<%=node['was_cluster']['member_name'][i]%>"]])
+
+<% end -%>
+
+AdminConfig.save()
+AdminNodeManagement.syncActiveNodes()
+
+print "end"

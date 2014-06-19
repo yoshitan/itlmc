@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-input clean="true" temporary="true">
+<server>
+    <repository location="<%=node['wct']['image_dir']%>"/>
+</server>
+
+<install modify='false'>
+<offering id='com.ibm.websphere.WCT.v85' profile='WebSphere Customization Toolbox V8.5' features="<%=node['wct']['features']%>" installFixes='none'/>
+</install>
+
+<profile id='WebSphere Customization Toolbox V8.5' installLocation="<%=node['wct']['install_dir']%>">
+<data key='eclipseLocation' value="<%=node['wct']['install_dir']%>"/>
+<data key='user.import.profile' value='false'/>
+<data key='user.select.64bit.image,com.ibm.websphere.WCT.v85' value='false'/>
+<data key='cic.selector.nl' value="<%=node['wct']['lang']%>"/>
+</profile>
+
+</agent-input>

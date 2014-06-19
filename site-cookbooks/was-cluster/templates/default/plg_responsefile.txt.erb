@@ -1,0 +1,13 @@
+configType=remote
+enableAdminServerSupport=false
+enableUserAndPass=false
+enableWinService=false
+ihsAdminCreateUserAndGroup=false
+mapWebServerToApplications=true
+wasMachineHostname=<%=node[:hostname]%>
+webServerConfigFile1=<%=node['ihs']['install_dir']%>/conf/httpd.conf
+webServerDefinition=<%=node['was_cluster']['webserver_name']%>
+webServerHostName=<%=node[:hostname]%>
+webServerInstallArch=<%=node['ihs']['arch']%>
+webServerPortNumber=<%=node['ihs']['port']%>
+webServerSelected=ihs

@@ -1,0 +1,28 @@
+import sys
+
+print "start"
+
+appMBean = AdminControl.completeObjectName('type=Application,name=<%=node['testapp']['app_name']%>,*')
+if(appMBean!=""):
+  sys.exit()
+
+appName = "<%=node['testapp']['app_name']%>"
+clusterName = "<%=node['was_cluster']['cluster_name']%>"
+
+members = AdminConfig.getid("/ServerCluster:"+clusterName+"/ClusterMember:/")
+members = AdminUtilities.convertToList(members)
+
+for member in members:
+  serverName = AdminConfig.showAttribute(member, "memberName")
+  nodeName = AdminConfig.showAttribute(member, "nodeName")
+  appManager = AdminControl.queryNames("node="+nodeName+",process="+serverName+",type=ApplicationManager,*")
+
+  appManager = AdminUtilities.convertToList(appManager)
+
+  for mgr in appManager:
+    AdminControl.invoke(mgr, "startApplication", appName)
+  #endFor
+
+#endFor
+
+print "end"
