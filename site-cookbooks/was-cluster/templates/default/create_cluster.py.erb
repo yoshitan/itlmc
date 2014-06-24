@@ -5,13 +5,21 @@ clusterName = "<%=node['was_cluster']['cluster_name']%>"
 attrs = [['name', clusterName]]
 cellname = AdminControl.getCell()
 cell = AdminConfig.getid("/Cell:"+cellname+"/")
-cluster = AdminConfig.create("ServerCluster", cell, attrs)
+
+cluster = AdminConfig.getid("/ServerCluster:"+clusterName+"/")
+if (len(cluster) ==0):
+  # cluster does not exist
+  cluster = AdminConfig.create("ServerCluster", cell, attrs)
+#endIf
 
 <% node[:was_cluster][:managed_name].each_with_index do |managed,i| -%>
-nodeString = "/Node:<%=node['was_cluster']['node_name'][i]%>"
-node = AdminConfig.getid(nodeString)
-AdminConfig.createClusterMember(cluster, node, [['memberName', "<%=node['was_cluster']['member_name'][i]%>"]])
-
+member = AdminConfig.getid("/Node:<%=node['was_cluster']['node_name'][i]%>/Server:<%=node['was_cluster']['member_name'][i]%>")
+if( len(member) == 0):
+  # member does not exist
+  nodeString = "/Node:<%=node['was_cluster']['node_name'][i]%>"
+  node = AdminConfig.getid(nodeString)
+  AdminConfig.createClusterMember(cluster, node, [['memberName', "<%=node['was_cluster']['member_name'][i]%>"]])
+#endIf
 <% end -%>
 
 AdminConfig.save()

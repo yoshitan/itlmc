@@ -55,7 +55,7 @@ execute "create cluster" do
   command <<-EOC
     "#{node[:was][:install_dir]}/profiles/#{node[:was_cluster][:dmgr_name]}/bin/wsadmin.sh" -lang jython -f /tmp/create_cluster.py
   EOC
-  creates "#{node[:was][:install_dir]}/profiles/#{node[:was_cluster][:dmgr_name]}/config/cells/#{node[:hostname]}Cell01/clusters/#{node[:was_cluster][:cluster_name]}"
+#  creates "#{node[:was][:install_dir]}/profiles/#{node[:was_cluster][:dmgr_name]}/config/cells/#{node[:hostname]}Cell01/clusters/#{node[:was_cluster][:cluster_name]}"
 end
 
 # start nodeagent if it is not running.
