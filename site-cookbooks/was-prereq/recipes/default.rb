@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: was-prereq
+# Cookbook Name:: xxxbook
 # Recipe:: default
 #
 # Copyright 2014, YOUR_COMPANY_NAME
@@ -77,7 +77,26 @@ yum_package "libgcc" do
   arch "i686"
 end
 
-service "iptables" do
-  action :stop
+group 'db2grp1' do
+        group_name 'db2grp1'
+        action [:create]
 end
 
+user 'db2inst1' do
+        comment 'db2inst1'
+        group 'db2grp1'
+        password 'nine0xml'
+        action [:create]
+end
+
+group 'db2fadm1' do
+        group_name 'db2fadm1'
+        action [:create]
+end
+
+user 'db2fenc1' do
+        comment 'db2fenc1'
+        group 'db2fadm1'
+        password 'nine0xml'
+        action [:create]
+end
