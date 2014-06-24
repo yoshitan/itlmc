@@ -100,3 +100,7 @@ user 'db2fenc1' do
         password 'nine0xml'
         action [:create]
 end
+
+service "iptables" do
+  action :stop
+end
